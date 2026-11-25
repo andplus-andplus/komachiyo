@@ -552,3 +552,40 @@ ul,ol{list-style:none;margin:0;padding:0}
 }
 .hd-logo{transition:opacity .5s var(--ease)}
 .hd:not(.is-solid):not(.is-open) .hd-logo{opacity:0;pointer-events:none}
+
+/* ---------- よくあるご質問 ---------- */
+.faq{max-width:calc(900px + var(--gut)*2)}
+.faq-list{border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line);position:relative}
+.qa summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:20px;
+  padding:26px 4px;font-family:var(--mincho);font-weight:500;font-size:clamp(1rem,1.5vw,1.12rem);letter-spacing:.1em;line-height:1.7;
+  transition:color .3s;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{color:var(--bengara)}
+.qa summary:focus-visible{outline:1px solid var(--kin);outline-offset:4px}
+.qa-q{flex:1}
+.qa-mark{
+  flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;
+  font-family:var(--mincho);font-size:14px;font-weight:700;letter-spacing:0;
+  color:var(--paper);background:var(--bengara);
+  box-shadow:inset 0 0 0 2px rgba(250,246,238,.35);
+}
+.qa-mark-a{background:none;color:var(--bengara);box-shadow:inset 0 0 0 1px var(--bengara)}
+.qa-pm{flex:none;width:16px;height:16px;position:relative}
+.qa-pm::before,.qa-pm::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:currentColor;transition:transform .45s var(--ease)}
+.qa-pm::after{transform:rotate(90deg)}
+.qa[open] .qa-pm::after{transform:rotate(0)}
+.qa-a{display:flex;gap:20px;padding:0 4px 30px;animation:qaIn .6s var(--ease)}
+.qa-a p{margin:4px 0 0;color:var(--sumi-2);font-size:14px;line-height:2.05}
+.qa-a b{font-weight:500;color:var(--sumi);background:linear-gradient(transparent 62%,rgba(180,141,82,.28) 62%)}
+.qa-a a{color:var(--bengara);text-underline-offset:4px;margin:0 .2em;white-space:nowrap}
+@keyframes qaIn{from{opacity:0;transform:translateY(-6px)}}
+.qa[open]::before{content:"";position:absolute;left:-1px;top:24px;bottom:24px;width:2px;background:var(--bengara);opacity:.8}
+@media (max-width:720px){
+  .qa summary{gap:14px;padding:22px 2px}
+  .qa-a{gap:14px}
+  .qa-mark{width:30px;height:30px;font-size:12px}
+}
+@media (max-width:1120px) and (min-width:961px){.hd-nav{gap:14px}.hd-nav a span{font-size:13px;letter-spacing:.1em}}
