@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andplus-andplus.github.io/komachiyo/sitemap.xml
+Sitemap: https://komachiyo.com/sitemap.xml
