@@ -117,4 +117,28 @@
 
   const y = $('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
+
+  /* ===== アクセス計測 =====
+     GA4 の測定ID（G-XXXXXXXXXX）を下に入れると計測が始まります。
+     空のままなら何も送信しません。 */
+  const GA_ID = '';
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+  if (GA_ID) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+  /* 電話・地図・Instagram のクリック（来店につながる行動）を記録 */
+  const where = (a) => a.closest('.hd') ? 'header' : a.closest('.sp-bar') ? 'sp_bar' : a.closest('.ft') ? 'footer'
+    : (a.closest('section[id]') || {}).id || 'other';
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[data-track]');
+    if (!a) return;
+    const name = { tel: 'tel_click', map: 'map_click', instagram: 'instagram_click' }[a.dataset.track];
+    if (name) gtag('event', name, { link_location: where(a), link_url: a.href, transport_type: 'beacon' });
+  });
 })();

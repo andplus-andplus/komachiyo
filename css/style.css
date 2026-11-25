@@ -419,14 +419,14 @@ ul,ol{list-style:none;margin:0;padding:0}
   content:counter(s,decimal-leading-zero);position:absolute;left:0;top:20px;
   font-family:var(--latin);font-style:italic;font-size:1.5rem;color:var(--kin);opacity:.8;
 }
-.sake-list h4{font-size:1.25rem;letter-spacing:.16em;line-height:1.5}
-.sake-list h4 small{font-size:12px;letter-spacing:.12em;margin-left:.8em;color:rgba(243,236,224,.65);font-weight:400}
+.sake-list h3{font-size:1.25rem;letter-spacing:.16em;line-height:1.5}
+.sake-list h3 small{font-size:12px;letter-spacing:.12em;margin-left:.8em;color:rgba(243,236,224,.65);font-weight:400}
 .sake-list p{margin:6px 0 0;font-size:13px;line-height:1.9;color:rgba(243,236,224,.7)}
 .pref{
   position:absolute;right:0;top:24px;font-size:11px;letter-spacing:.2em;color:var(--kin);
   border:1px solid rgba(180,141,82,.45);border-radius:999px;padding:1px 10px;
 }
-.sake-list h4{padding-right:64px}
+.sake-list h3{padding-right:64px}
 @media (max-width:820px){.sake-list{grid-template-columns:1fr}}
 
 .drink .dh::after{filter:invert(1) sepia(.3);opacity:.7}
@@ -527,3 +527,28 @@ ul,ol{list-style:none;margin:0;padding:0}
   .curtain img{clip-path:none;transform:none}
   html{scroll-behavior:auto}
 }
+
+/* ---------- 公式ロゴ ---------- */
+.logo-mask{
+  display:block;width:44px;height:52px;flex:none;background:currentColor;
+  -webkit-mask:url(../logo.svg) center/contain no-repeat;mask:url(../logo.svg) center/contain no-repeat;
+}
+.hd.is-solid .logo-mask{width:36px;height:42px}
+.hero-logo{
+  position:absolute;left:var(--gut);top:50%;transform:translateY(-56%);margin:0;z-index:2;
+  width:clamp(170px,17vw,250px);
+  filter:drop-shadow(0 6px 24px rgba(0,0,0,.35));
+  opacity:0;animation:logoIn 1.6s .2s var(--ease) forwards;
+}
+.hero-logo img{width:100%;height:auto}
+@keyframes logoIn{from{opacity:0;transform:translateY(-50%) scale(.96)}to{opacity:1;transform:translateY(-56%)}}
+.ft-logo{width:110px;height:auto}
+@media (max-width:720px){
+  .hero-logo{left:50%;top:96px;width:120px;transform:translateX(-50%);animation-name:logoInSp}
+  @keyframes logoInSp{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translateX(-50%)}}
+  .hero-copy{transform:translate(-50%,-36%)}
+  .tokusa{transform:translate(50%,-36%)}
+  .hero-en{display:none}
+}
+.hd-logo{transition:opacity .5s var(--ease)}
+.hd:not(.is-solid):not(.is-open) .hd-logo{opacity:0;pointer-events:none}
